@@ -1,2 +1,2 @@
 # Elite_Code
-LeetCode Database
+LeetCode Database for optimal solutions by yours truly
