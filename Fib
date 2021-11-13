@@ -1,0 +1,22 @@
+class Solution:
+    
+    # dict to store aready known fib numbers
+    memo = {}
+    
+    def fib(self, n: int) -> int:
+        
+        # Classic fibonacci Sol. quite slow as recusion frames are quite high in bigger numbers
+        
+        # if (n == 0 or n == 1):
+        #     return n
+        # return self.fib(n-1) + self.fib(n-2)
+        
+        if (n==0 or n == 1):
+            return n
+        
+        if n-1 not in self.memo:
+            self.memo[n-1] = self.fib(n-1)
+        if n-2 not in self.memo:
+            self.memo[n-2] = self.fib(n-2)
+        
+        return self.memo[n-1] + self.memo[n-2]
