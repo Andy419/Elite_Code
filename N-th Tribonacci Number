@@ -1,0 +1,22 @@
+class Solution:
+    def tribonacci(self, n: int) -> int:
+        
+#         first edge cases
+        if (n < 2):
+            return n
+        
+        if (n == 2):
+            return 1
+        
+#         add until number is reached
+        
+        a, b, c = 0, 1, 1
+        d = 0
+        for _ in range(n-2):
+            d = a + b + c
+            a = b
+            b = c
+            c = d
+        
+        return d
+            
