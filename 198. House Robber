@@ -1,0 +1,22 @@
+class Solution:
+    def rob(self, nums: List[int]) -> int:
+        
+        # Ok this one actually seems impossible at first and it kind of is
+        
+        # There is a pattern to it that writing out the max of each makes it a lot clearer
+        
+        if nums == []:
+            return 0
+        
+        if len(nums) < 3:
+            return max(nums)
+        
+        robberylist = []
+        robberylist.append(nums[0])
+        robberylist.append(nums[1])
+        
+        for i in range(2, len(nums)):
+            cur = nums[i] + max(robberylist[:i-1])
+            robberylist.append(cur)
+        
+        return max(robberylist)
