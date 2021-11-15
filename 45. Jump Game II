@@ -1,0 +1,51 @@
+class Solution:
+    def jump(self, nums: List[int]) -> int:
+        
+        # Too slow for brute force
+        
+#         target = len(nums) - 1
+        
+#         def steps(idx, count):
+            
+#             if (idx == target):
+#                 if count < ans[0]:
+#                     ans[0] = count
+#             elif (idx < target):
+#                 for i in range(0, nums[idx]):
+#                     steps(idx + i + 1, count + 1)
+        
+#         ans = [target + 1]
+#         steps(0, 0)
+        
+#         return ans[0]
+
+        
+        # need to use another greedy algo
+        
+        # basically make the biggest jump as possible
+    
+        if len(nums) == 1:
+            return 0
+        
+        target = len(nums) - 1
+        jumps = 0
+        curidx = 0
+        
+        while (curidx != target):
+            far = nums[curidx]
+            
+            if curidx + far >= target:
+                jumps += 1
+                return jumps
+            
+            maxd = [0,0]
+            
+            for i in range(curidx , curidx + nums[curidx] ):
+                dist = nums[i+1] + i+1
+                if dist >= maxd[1]:
+                    maxd[1] = dist
+                    maxd[0] = i+1
+            curidx = maxd[0]
+            jumps += 1
+        
+        return jumps
