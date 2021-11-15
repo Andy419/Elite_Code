@@ -1,0 +1,30 @@
+class Solution:
+    def intersect(self, nums1: List[int], nums2: List[int]) -> List[int]:
+        
+        # This problem shows the basic introduction of a Dictionairy
+        
+        # This question is also kind of confusing because at first you
+        # think it has to be in order but it doesnt
+        
+        if nums1 == [] or nums2 == []:
+            return []
+        
+        many = {}
+        
+        
+        for num in nums1:
+            if num not in many:
+                many[num] = 1
+            else:
+                many[num] += 1
+                
+        
+        ans = []
+        
+        for i in range(len(nums2)):
+            if nums2[i] in many and many[nums2[i]] != 0:
+                many[nums2[i]] -= 1
+                ans.append(nums2[i])
+        
+        return ans
+                
