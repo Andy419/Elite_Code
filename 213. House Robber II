@@ -1,0 +1,43 @@
+class Solution:
+    def rob(self, nums: List[int]) -> int:
+        
+        # This problem also seems impossible at first
+        
+        # The hint basically solves it, just do House Robber I twice
+        # with the first run through excluding the last house
+        # and second run excluding the first house since they
+        # both cannot be robbed. Return the max of these runs
+        
+        if nums == []:
+            return 0
+        
+        if len(nums) < 3:
+            return max(nums)
+        
+        robberylist = []
+        robberylist.append(nums[0])
+        robberylist.append(nums[1])
+        
+        rob1 = nums[:-1]
+        
+        for i in range(2, len(rob1)):
+            cur = rob1[i] + max(robberylist[:i-1])
+            robberylist.append(cur)
+        
+        profit = max(robberylist)
+        
+        rob2 = nums[1:]
+        
+        if len(rob2) < 3:
+            return max(max(rob2), profit)
+        
+        robberylist = []
+        robberylist.append(rob2[0])
+        robberylist.append(rob2[1])
+        
+        for i in range(2, len(rob2)):
+            cur = rob2[i] + max(robberylist[:i-1])
+            robberylist.append(cur)
+        
+        
+        return max(max(robberylist), profit)
