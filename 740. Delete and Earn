@@ -1,0 +1,22 @@
+class Solution:
+    def deleteAndEarn(self, nums: List[int]) -> int:
+        
+        # Fill array to make House Robber Problem
+        
+        #[0,0,2,3,4]
+        All = [0] * (max(nums) + 1)
+        
+        for num in nums:
+            All[num] += num
+            
+        total = []
+        x1 = All[0]
+        x2 = All[1]
+        total.append(x1)
+        total.append(x2)
+        
+        for i in range(2, len(All)):
+            cur = All[i] + max(total[:-1])            
+            total.append(cur)
+
+        return max(total)
