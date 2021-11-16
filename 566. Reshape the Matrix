@@ -1,0 +1,24 @@
+class Solution:
+    def matrixReshape(self, mat: List[List[int]], r: int, c: int) -> List[List[int]]:
+        
+        # easy implementation, turn into a long array, then fill the new matrix if possible
+        
+        if len(mat) * len(mat[0]) != r * c:
+            return mat
+        
+        
+        default = []
+        
+        for i in range(len(mat)):
+            for j in range(len(mat[0])):
+                default.append(mat[i][j])
+        
+        count = 0
+        result = []
+        for i in range(r):
+            cur = []
+            for j in range(c):
+                cur.append(default[count])
+                count += 1
+            result.append(cur)
+        return result
