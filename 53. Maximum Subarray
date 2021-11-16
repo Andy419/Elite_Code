@@ -1,0 +1,20 @@
+class Solution:
+    def maxSubArray(self, nums: List[int]) -> int:
+        
+        # Not very dificult, just have a running total on the array
+        
+        if len(nums) == 1:
+            return nums[0]
+        
+        maxsofar = nums[0]
+        cur = maxsofar
+        for num in nums[1:]:
+            if num > num + cur:
+                cur = num
+            else:
+                cur += num
+            
+            if cur > maxsofar:
+                maxsofar = cur
+        
+        return maxsofar
