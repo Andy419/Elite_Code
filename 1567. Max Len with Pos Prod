@@ -1,0 +1,55 @@
+class Solution:
+    def getMaxLen(self, nums: List[int]) -> int:
+        
+        # 1 split into subarrays by zeros
+        
+        # 2 count the greatest possible positive num
+        
+        
+        split = []
+        
+        cur = []
+        for i in range(len(nums)):
+            num = nums[i]
+            
+            if num == 0:
+                if (cur != []):
+                    split.append(cur)
+                    cur = []
+            else:
+                cur.append(num)
+                
+                if i == len(nums) -1:
+                    split.append(cur)
+        
+        maxso = 0
+        print(split)
+        for arr in split:
+            neg = False
+            for num in arr:
+                if num < 0:
+                    neg = not neg
+            
+            if neg == False:
+                maxso = max(len(arr), maxso)
+            else:
+                count = 0
+                for i in range(len(arr)):
+                    if arr[i] < 0:
+                        count = i
+                        break
+                
+                for i in range(len(arr)-1, -1, -1):
+                    if arr[i] < 0:
+                        if len(arr) -1 - i < count:
+                            count = len(arr) -1 -i
+                        
+                        break
+                count += 1
+                maxso = max(len(arr) - count, maxso)
+                    
+            
+            
+        return maxso
+            
+                
