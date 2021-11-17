@@ -1,0 +1,20 @@
+class Solution:
+    def maxProduct(self, nums: List[int]) -> int:
+        
+        if len(nums) == 1:
+            return nums[0]
+        
+        ans, maxso, minso = nums[0], nums[0], nums[0]
+        
+        for i in range(1, len(nums)):
+            cur = nums[i]
+            
+            temp = maxso
+            maxso = max(maxso * cur, minso * cur, cur)
+            
+            minso = min(temp * cur, minso * cur, cur)
+            
+            ans = max(ans, maxso)
+        
+        return ans
+            
