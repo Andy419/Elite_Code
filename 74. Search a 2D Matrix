@@ -1,0 +1,23 @@
+class Solution:
+    def searchMatrix(self, matrix: List[List[int]], target: int) -> bool:
+        
+        
+        # Classic algo. Too slow if you dont use this algo
+        
+        # start at a corner and move right and up to move closer to target
+        
+        row = len(matrix) - 1
+        col = 0
+        
+        while True:
+            if row == -1 or col == len(matrix[0]):
+                return False
+            
+            cur = matrix[row][col]
+            
+            if cur == target:
+                return True
+            if cur < target:
+                col += 1
+            else:
+                row -= 1
