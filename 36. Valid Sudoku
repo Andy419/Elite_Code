@@ -1,0 +1,32 @@
+class Solution:
+    def isValidSudoku(self, board: List[List[str]]) -> bool:
+        
+        # This sol smacks so hard
+        
+        # all credit to Zitao Wang
+        
+        # basically create sets
+        
+        rowcheck = [set() for _ in range(9)]
+        colcheck = [set() for _ in range(9)]
+        groupcheck = [[set() for _ in range(3)] for _ in range(3)]
+        
+        for i in range(9):
+            for j in range(9):
+                if board[i][j] == ".":
+                    continue
+                
+                x = i // 3
+                y = j // 3
+                
+                num = board[i][j]
+                
+                if (num not in rowcheck[i] and num not in colcheck[j] and num not in groupcheck[x][y]):
+                    rowcheck[i].add(num)
+                    colcheck[j].add(num)
+                    groupcheck[x][y].add(num)
+
+                else:
+                    return False
+        
+        return True
