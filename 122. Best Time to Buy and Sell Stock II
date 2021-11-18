@@ -1,0 +1,24 @@
+class Solution:
+    def maxProfit(self, prices: List[int]) -> int:
+        
+        # Same as the First but sell profit as soon as there is even a small margin
+        
+        if len(prices) == 0:
+            return 0
+        
+        curlow = prices[0]
+        profit = 0
+        
+        for i in range(1, len(prices)):
+            cur = prices[i]
+            
+            if cur < curlow:
+                curlow = cur
+            else:
+                profit += cur - curlow
+                curlow = cur
+        
+        return profit
+                    
+                
+            
