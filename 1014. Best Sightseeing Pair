@@ -1,0 +1,17 @@
+class Solution:
+    def maxScoreSightseeingPair(self, values: List[int]) -> int:
+        
+        # lbest holds largest left index
+        
+        # iterate as right best and reintialzing lbest if it is beat
+        
+        lbest = values[0]
+        best = -inf
+        
+        for i in range(1, len(values)):
+            best = max(best, lbest + values[i] - i)
+            lbest = max(lbest, values[i] + i)
+            
+        
+        return best
+                
