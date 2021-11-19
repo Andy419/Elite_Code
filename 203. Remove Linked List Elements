@@ -1,0 +1,16 @@
+class Solution:
+    def removeElements(self, head: Optional[ListNode], val: int) -> Optional[ListNode]:
+        
+        # create another list and only add to new list if not val
+        
+        dummy = cur = ListNode(-1)
+        
+        while head is not None:
+            if head.val != val:
+                cur.next = head
+                cur = cur.next
+            head = head.next
+        
+        cur.next = None
+        
+        return dummy.next
