@@ -1,0 +1,22 @@
+class Solution:
+    def firstBadVersion(self, n):
+        """
+        :type n: int
+        :rtype: int
+        """
+        
+        #Typical binary search, return pivot when equilibrium reached
+        
+        l = 0
+        
+        r = n
+        
+        while (l <= r):
+            pivot = l + (r-l) // 2
+            
+            if isBadVersion(pivot) == False:
+                l = pivot + 1
+            else:
+                r = pivot - 1
+        
+        return l
