@@ -24,7 +24,7 @@ class Solution:
             if s1Count[index] == s2Count[index]:
                 matches -= 1
                 
-            s2Count[index] += 1
+            s2Count[index] += 1 
             
             if s1Count[index] == s2Count[index]:
                 matches += 1
