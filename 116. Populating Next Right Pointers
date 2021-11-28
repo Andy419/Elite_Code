@@ -1,0 +1,49 @@
+def connect(self, root: 'Node') -> 'Node':
+        #DFS
+        
+        def trav(root):
+            if root.left is None:
+                return
+            
+            if root.next is None:
+                root.left.next = root.right
+                root.right.next = None
+            else:
+                root.left.next = root.right
+                root.right.next = root.next.left
+            
+            trav(root.left)
+            trav(root.right)
+            
+        
+        if root is None:
+            return root
+        
+        root.next = None
+        trav(root)
+        return root
+        
+        
+        #Iterative
+        
+#         if root is None:
+#             return root
+        
+#         stack = [root]
+#         while stack:
+#             newstack = []
+            
+#             if stack[0].left != None:           
+#                 for node in stack:
+#                     newstack.append(node.left)
+#                     newstack.append(node.right)
+            
+            
+#             for i in range(len(stack)):
+#                 if i == len(stack) - 1:
+#                     stack[i].next == None
+#                 else:
+#                     stack[i].next = stack[i+1]
+#             stack = newstack
+        
+#         return root
