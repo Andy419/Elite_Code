@@ -1,0 +1,85 @@
+class Solution:
+    def minPathSum(self, grid: List[List[int]]) -> int:
+        
+#         def dfs(r, c, count):
+            
+#                         # Check if made it
+#             if r == rows-1 and c == cols-1:
+#                 if (r,c) in memo:
+#                     memo[(r,c)] = min(memo[(r,c)], count + grid[r][c])
+#                 else:
+#                     memo[(r,c)] = count + grid[r][c]
+#                 return memo[(r,c)] 
+            
+#             # check if in memo
+#             if (r,c) in memo:
+#                 return memo[(r,c)]
+            
+#             # Check not out of bounds
+#             if r == rows or c == cols:
+#                 memo[(r,c)] = 20001
+#                 return 20001
+            
+#             count += grid[r][c]
+                      
+            
+#             memo[(r,c)] = min(dfs(r+1, c, count), dfs(r, c+1, count))
+            
+#             return memo[(r,c)]
+        
+#         rows = len(grid)
+#         cols = len(grid[0])
+        
+#         memo = {}
+        
+#         small = dfs(0,0,0)
+#         print(memo)
+#         return small
+        
+        #BFS too slow
+
+#         rows = len(grid)
+#         cols = len(grid[0])
+        
+        
+#         stack = [(0, 0, 0)]
+        
+#         for _ in range(rows+cols-2):
+#             newlayer = []
+#             for node in stack:
+#                 count, i, j = node[0], node[1], node[2]
+                
+#                 if i == rows or j == cols:
+#                     continue
+                
+#                 count += grid[i][j]
+#                 newlayer.append((count, i+1, j))
+#                 newlayer.append((count, i, j+1))
+#             stack = newlayer
+                    
+#         return min(stack)[0] + grid[rows-1][cols-1]
+
+        rows = len(grid)
+        cols = len(grid[0])
+        
+        for r in range(rows):
+            for c in range(cols):
+                if r == 0 and c == 0:
+                    grid[r][c] = grid[r][c]
+                elif r == 0:
+                    grid[r][c] = grid[r][c] + grid[r][c-1]
+                elif c == 0:
+                    grid[r][c] = grid[r][c] + grid[r-1][c]
+                else:
+                    grid[r][c] = grid[r][c] + min(grid[r-1][c], grid[r][c-1])
+        
+        return grid[rows-1][cols-1]
+            
+        
+        
+        
+        
+        
+        
+        
+        
