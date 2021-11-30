@@ -1,0 +1,126 @@
+class Solution:
+    def longestPalindrome(self, s: str) -> str:
+        
+        #Brute Force Too Slow
+#         def CheckPali(s):
+#             if len(s) == 1:
+#                 return True
+            
+#             l = 0
+#             r = len(s) - 1
+            
+#             while l < r:
+
+#                 if s[l] != s[r]:
+#                     return False
+#                 l += 1
+#                 r -= 1
+#             return True
+        
+        
+        
+#         if len(s) == 1:
+#             return s
+        
+#         longSub = s[0]
+#         longSublen = 1
+        
+#         for i in range(len(s)):
+#             for j in range(i+1, len(s)+1):
+#                 cur = s[i:j]
+                
+#                 if j - i <= longSublen:
+#                     continue
+                
+#                 if CheckPali(cur):
+#                     if len(cur) > longSublen:
+#                         longSublen = len(cur)
+#                         longSub = cur
+                
+        
+#         return longSub
+
+        
+        # Basically bfs on each char
+        if len(s) == 1:
+            return s
+        
+        longSub = s[0]
+        longSublen = 1
+        
+        for i in range(len(s)):
+            if i == 0:
+                if s[i] == s[i+1]:
+                    if 2 > longSublen:
+                        longSublen = 2
+                        longSub = s[0:2]
+        
+            elif i == len(s) - 1:
+                if s[i] == s[i-1]:
+                    if 2 > longSublen:
+                        longSublen = 2
+                        longSub = s[0:2]
+            
+            else:
+                # find l and r bounds
+                
+                if s[i-1] == s[i]:
+                    l = i-2
+                    r = i+1
+                    while True:
+                        if l < 0 or r >= len(s):
+                            break
+                        
+                        if s[l] == s[r]:
+                            l -= 1
+                            r += 1
+                        else:
+                            break
+                    
+                    cur = s[l+1:r]
+                    
+                    if len(cur) > longSublen:
+                        longSublen = len(cur)
+                        longSub = cur
+                if s[i] == s[i+1]:
+                    l = i-1
+                    r = i+2
+                    while True:
+                        if l < 0 or r >= len(s):
+                            break
+                        
+                        if s[l] == s[r]:
+                            l -= 1
+                            r += 1
+                        else:
+                            break
+                    
+                    cur = s[l+1:r]
+                    
+                    if len(cur) > longSublen:
+                        longSublen = len(cur)
+                        longSub = cur
+                if s[i-1] == s[i+1]:
+                    l = i-2
+                    r = i+2
+                    while True:
+                        if l < 0 or r >= len(s):
+                            break
+                        
+                        if s[l] == s[r]:
+                            l -= 1
+                            r += 1
+                        else:
+                            break
+                    
+                    cur = s[l+1:r]
+                    
+                    if len(cur) > longSublen:
+                        longSublen = len(cur)
+                        longSub = cur
+                    
+                    
+                
+        return longSub
+        
+        
