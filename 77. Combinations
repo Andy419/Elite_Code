@@ -1,0 +1,15 @@
+    def combine(self, n: int, k: int) -> List[List[int]]:
+        
+        # Implement BackTracking
+        def combo(start, cur):
+            if len(cur) == k:
+                ans.append(cur)
+
+            else:
+                for i in range(start+1, n + 1):
+                    combo(i,cur + [i])
+
+
+        ans = []
+        combo(0, [])
+        return ans
