@@ -1,0 +1,48 @@
+class Solution:
+    def minRemoveToMakeValid(self, s: str) -> str:
+#         l = 0
+#         ans = []
+#         bad = []
+#         for i in range(len(s)):
+#             let = s[i]
+#             if let == '(' or let == ')':
+#                 if let == ')':
+#                     if l > 0:
+#                         l -= 1
+#                         ans.pop()
+#                     else:
+#                         bad.append(i)
+#                 else:
+#                     l += 1
+#                     ans.append(i)
+        
+#         res = ""
+#         for i in range(len(s)):
+#             if not(i in ans or i in bad):
+#                 res += s[i]
+        
+#         return res
+        r = 0
+        for let in s:
+            if let == ')':
+                r += 1
+        
+        ans = ""
+        l = 0
+        for let in s:
+            if let == ')':
+                r -= 1
+                if l == 0:
+                    continue
+                l -= 1
+                
+            elif let == '(':
+                if l == r:
+                    continue
+                l += 1
+            
+            ans += let
+        
+        return ans
+                
+                
