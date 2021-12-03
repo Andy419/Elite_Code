@@ -1,0 +1,29 @@
+    def wordPattern(self, pattern: str, s: str) -> bool:
+        i = 0
+        start = 0
+        arr = []
+        while i < len(s):
+            if s[i] == ' ':
+                arr.append(s[start:i])
+                start = i+1
+            i += 1
+        
+        arr.append(s[start:i])
+        
+        if len(pattern) != len(arr):
+            return False
+        
+        Pat = dict()
+        already = set()
+        for i in range(len(pattern)):
+            let = pattern[i]
+            if let not in Pat:
+                if arr[i] in already:
+                    return False
+                Pat[let] = arr[i]
+                already.add(arr[i])
+            else:
+                if Pat[let] != arr[i]:
+                    return False
+        
+        return True
