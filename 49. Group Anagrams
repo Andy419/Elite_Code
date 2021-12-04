@@ -1,0 +1,23 @@
+    def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
+        
+        anagramArr = dict()
+        
+        for word in strs:
+#             curlets = [0]*26
+            
+#             for let in word:
+#                 num = ord(let) - ord('a')
+#                 curlets[num] += 1
+            
+#             curlets = tuple(curlets)
+            curlets = ''.join(sorted(word))
+            if curlets in anagramArr:
+                anagramArr[curlets].append(word)
+            else:
+                anagramArr[curlets] = [word]
+        
+        res = []
+        for key in anagramArr:
+            res.append(anagramArr[key])
+        
+        return res
