@@ -1,0 +1,23 @@
+def firstMissingPositive(self, nums: List[int]) -> int:
+        
+        
+       # Get Rid of all negatives and numbers greater than the length of the array
+        n = len(nums)
+        for i in range(n):
+            if nums[i] < 1 or nums[i] > n:
+                nums[i] = 0
+        
+        # Cache the counts as the length of the array +1
+        # the count is the number of caches in the indices (number of (n+1)'s')
+        for i in range(n):
+            if 1 <= nums[i] % (n + 1) <= n:
+                # minus 1 at the end is due to offset (i.e array starts at 0 but stores 1's count)
+                ind = nums[i] % (n + 1) - 1
+                nums[ind] += n + 1
+          
+        
+        for i in range(n):
+            if nums[i] <= n:
+                return i + 1
+        
+        return n + 1
