@@ -1,0 +1,20 @@
+def minDepth(self, root: Optional[TreeNode]) -> int:
+    if root is None:
+        return 0
+    
+    stack = [(root,1)]
+    while stack:
+        newstack = []
+        
+        for entry in stack:
+            node = entry[0]
+            if node.left is None and node.right is None:
+                return entry[1]
+            
+            if node.left:
+                newstack.append((node.left, entry[1] + 1))
+            
+            if node.right:
+                newstack.append((node.right, entry[1] + 1))
+        
+        stack = newstack
