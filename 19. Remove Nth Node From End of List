@@ -1,0 +1,42 @@
+def removeNthFromEnd(self, head: Optional[ListNode], n: int) -> Optional[ListNode]:
+        
+        # two pointers, set one pointer n steps ahead of other pointer, iterate and use logic
+        temp1 = head
+        temp2 = head
+        
+        for _ in range(n):
+            temp1 = temp1.next
+        
+        while temp1 and temp1.next:
+            temp1 = temp1.next
+            temp2 = temp2.next
+        
+        if temp1:
+            temp2.next = temp2.next.next
+        else:
+            return head.next
+        
+        return head
+        
+        
+        # Find length, then iterate to n-last and skip
+        
+#         count = 0
+#         while temp:
+#             count += 1
+#             temp = temp.next
+        
+#         if n == count:
+#             return head.next
+        
+#         temp = head
+        
+#         count -= 1
+        
+#         while count > n:
+#             temp = temp.next
+#             count -= 1
+        
+#         temp.next = temp.next.next
+        
+#         return head
