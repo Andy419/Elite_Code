@@ -1,0 +1,28 @@
+def totalFruit(self, fruits: List[int]) -> int:
+        
+    if len(fruits) < 3:
+        return len(fruits)
+    
+    basket = dict() # key -> number, value -> count
+    maxso = 0
+    j = 0
+    for i in range(len(fruits)):
+        cur = fruits[i]
+        if cur not in basket:
+            basket[cur] = 1
+        else:
+            basket[cur] += 1
+        
+        while len(basket) > 2:
+            basket[fruits[j]] -= 1
+            if basket[fruits[j]] == 0:
+                del basket[fruits[j]]
+            
+            j+= 1
+            
+        maxso = max(maxso,  i-j+1)
+            
+            
+        
+    return maxso
+        
