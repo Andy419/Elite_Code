@@ -1,0 +1,10 @@
+def maxProduct(self, nums: List[int]) -> int:
+    
+    # min heap sol.
+    for i in range(len(nums)):
+        nums[i] = - nums[i]
+    heapq.heapify(nums)
+    f = heapq.heappop(nums)
+    s = heapq.heappop(nums)
+    
+    return (-s - 1) * (-f - 1)
