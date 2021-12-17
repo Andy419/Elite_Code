@@ -1,0 +1,30 @@
+def wordBreak(self, s: str, wordDict: List[str]) -> List[str]:
+        
+    # Easiset hard of my life lmao
+
+    # basically use little caching and so far trick
+    
+    words = set(wordDict)
+    res = [[0, ""]]
+    
+    bigW = -1
+    for w in wordDict:
+        bigW = max(bigW, len(w))
+    
+    for i in range(len(s)):
+        nres = []
+        for poss in res:
+            if s[poss[0]:i+1] in words:
+                nres.append([i+1, poss[1] + s[poss[0]:i+1] + " "])
+            
+            if i+1 - poss[0] <= bigW:
+                nres.append(poss)
+        
+        res = nres
+    
+    act = []
+    for poss in res:
+        if poss[0] == len(s):
+            act.append(poss[1][:-1])
+    
+    return act
